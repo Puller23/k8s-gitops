@@ -15,6 +15,9 @@ ingress-nginx:
       use-forwarded-headers: "true"
       enable-real-ip: "true"
       forwarded-for-header: "CF-Connecting-IP"
+    service:
+      loadBalancerIP: 10.18.20.35
+      externalTrafficPolicy: Local
     publishService:
         enabled: true
     resources:
