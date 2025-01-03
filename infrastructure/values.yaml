@@ -19,3 +19,10 @@ applications:
       enabled: true
     syncOptions:
       - CreateNamespace=true
+  - name: metallb
+    namespace: kube-system
+    path: infrastructure/metallb
+    manifest-paths: /infrastructure/metallb
+    sync-wave: "-4"
+    helm:
+      enabled: true
