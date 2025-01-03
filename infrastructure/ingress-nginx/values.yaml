@@ -1,0 +1,25 @@
+ingress-nginx:
+  controller:
+    replicaCount: 1
+    config:
+      client-body-buffer-size: 100M
+      client-body-timeout: 120
+      client-header-timeout: 120
+      enable-brotli: "true"
+      enable-real-ip: "true"
+      hsts-max-age: 31449600
+      keep-alive-requests: 10000
+      keep-alive: 120
+      proxy-body-size: 0
+      proxy-buffer-size: 16k
+      use-forwarded-headers: "true"
+      enable-real-ip: "true"
+      forwarded-for-header: "CF-Connecting-IP"
+    publishService:
+        enabled: true
+    resources:
+      requests:
+        memory: 500Mi
+        cpu: 25m
+      limits:
+        memory: 600Mi
