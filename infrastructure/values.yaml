@@ -26,3 +26,12 @@ applications:
     sync-wave: "-4"
     helm:
       enabled: true
+  - name: cert-manager
+    namespace: cert-manager
+    path: infrastructure/cert-manager
+    manifest-paths: /infrastructure/cert-manager
+    sync-wave: "-4"
+    helm:
+      enabled: true
+    syncOptions:
+      - CreateNamespace=true
