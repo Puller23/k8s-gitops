@@ -1,0 +1,12 @@
+repo:
+  url: https://github.com/Puller23/k8s-gitops.git
+  revision: main
+
+applications:
+  - name: external-secrets
+    namespace: kube-system
+    path: infrastructure/external-secrets
+    manifest-paths: /infrastructure/external-secrets
+    sync-wave: "-4"
+    helm:
+      enabled: true

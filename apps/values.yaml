@@ -1,0 +1,29 @@
+repo:
+  url: https://github.com/Puller23/k8s-gitops.git
+  revision: main
+
+applications:
+  - name: argocd
+    app-namespace: argocd
+    namespace: argocd
+    path: argocd
+    manifest-paths: /argocd
+    sync-wave: "-5"
+
+  - name: infrastructure
+    namespace: argocd
+    path: infrastructure/
+    manifest-paths: /infrastructure/templates;/infrastructure/Chart.yaml;/infrastructure/values.yaml
+    sync-wave: "-4"
+
+  # - name: main
+  #   namespace: argocd
+  #   path: main/
+  #   manifest-paths: /main/templates;/main/Chart.yaml;/main/values.yaml
+  #   sync-wave: "-3"
+
+  - name: root
+    app-namespace: argocd
+    namespace: argocd
+    path: apps
+    manifest-paths: /apps
