@@ -23,3 +23,8 @@ longhorn:
     upgradeVersionCheck: false
   longhornUI:
     replicas: 1
+  csi:
+    attacherReplicaCount: 1
+    provisionerReplicaCount: 1
+    provisionerReplicaCount: 1
+    snapshotterReplicaCount: 1
