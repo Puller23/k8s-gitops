@@ -1,0 +1,7 @@
+name: cert-manager-webhook-ionos
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: cert-manager-webhook-ionos
+    version: 1.2.0
+    repository: https://fabmade.github.io/cert-manager-webhook-ionos
