@@ -35,3 +35,12 @@ applications:
       enabled: true
     syncOptions:
       - CreateNamespace=true
+  - name: cert-manager-webhook-ionos
+    namespace: cert-manager
+    path: infrastructure/cert-manager-webhook-ionos
+    manifest-paths: /infrastructure/cert-manager-webhook-ionos
+    sync-wave: "-4"
+    helm:
+      enabled: true
+    syncOptions:
+      - CreateNamespace=true
