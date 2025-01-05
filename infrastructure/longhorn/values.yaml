@@ -7,7 +7,7 @@ longhorn:
     backupTarget: nfs://nas.local.ibartels.de/data/nfs/longhorn
     storageMinimalAvailablePercentage: "10"
     concurrentAutomaticEngineUpgradePerNodeLimit: 1
-    defaultDataPath: /var/lib/longhorn
+    defaultDataPath: /var/mnt/longhorn
     defaultLonghornStaticStorageClass: longhorn
   ingress:
     enabled: false
