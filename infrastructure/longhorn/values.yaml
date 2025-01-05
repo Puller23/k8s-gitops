@@ -1,0 +1,18 @@
+longhorn:
+  persistence:
+    defaultClassReplicaCount: 1
+  defaultSettings:
+    defaultReplicaCount: 1
+    createDefaultDiskLabeledNodes: true
+    backupTarget: nfs://nas.local.ibartels.de/data/nfs/longhorn
+    storageMinimalAvailablePercentage: "10"
+    concurrentAutomaticEngineUpgradePerNodeLimit: 1
+    defaultDataPath: /var/lib/longhorn
+    defaultLonghornStaticStorageClass: longhorn
+  ingress:
+    enabled: true
+    host: longhorn.local.ibartels.de
+    tlsSecret: longhorn-tls-prod
+    tls: true
+    annotations:
+      cert-manager.io/issuer: letsencrypt-ionos-prod
