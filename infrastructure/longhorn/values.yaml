@@ -10,7 +10,7 @@ longhorn:
     defaultDataPath: /var/lib/longhorn
     defaultLonghornStaticStorageClass: longhorn
   ingress:
-    enabled: true
+    enabled: false
     host: longhorn.local.ibartels.de
     tlsSecret: longhorn-tls-prod
     tls: true
@@ -21,3 +21,5 @@ longhorn:
     jobEnabled: false
     # -- Setting that allows Longhorn to perform upgrade version checks after starting the Longhorn Manager DaemonSet Pods. Disabling this setting also disables `preUpgradeChecker.jobEnabled`. Longhorn recommends keeping this setting enabled.
     upgradeVersionCheck: false
+  longhornUI:
+    replicas: 1
