@@ -4,7 +4,7 @@ longhorn:
   defaultSettings:
     defaultReplicaCount: 1
     createDefaultDiskLabeledNodes: true
-    backupTarget: nfs://nas.local.ibartels.de/data/nfs/longhorn
+    backupTarget: nfs://nas.local.ibartels.de/mnt/data/nfs/longhorn
     storageMinimalAvailablePercentage: "10"
     concurrentAutomaticEngineUpgradePerNodeLimit: 1
     defaultDataPath: /var/mnt/longhorn
