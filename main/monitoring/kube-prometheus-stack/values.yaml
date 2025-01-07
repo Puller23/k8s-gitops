@@ -91,7 +91,7 @@ kube-prometheus-stack:
         limits:
           cpu: 200m
     admissionWebhooks:
-      enabled: false
+      enabled: true
   prometheus:
     prometheusSpec:
       replicas: 1
