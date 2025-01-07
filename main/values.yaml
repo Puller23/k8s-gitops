@@ -2,11 +2,11 @@ repo:
   url: https://github.com/Puller23/k8s-gitops.git
   revision: main
 
-applications:
-  - name: monitoring
-    namespace: monitoring
-    path: main/monitoring
-    manifest-paths: /main/monitoring/templates;/main/monitoring/Chart.yaml;/main/monitoring/values.yaml
-    sync-wave: "-2"
-    helm:
-      enabled: true
+# applications:
+#   - name: monitoring
+#     namespace: monitoring
+#     path: main/monitoring
+#     manifest-paths: /main/monitoring/templates;/main/monitoring/Chart.yaml;/main/monitoring/values.yaml
+#     sync-wave: "-2"
+#     helm:
+#       enabled: true
