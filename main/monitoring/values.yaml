@@ -1,0 +1,12 @@
+repo:
+  url: https://github.com/Puller23/k8s-gitops.git
+  revision: main
+
+applications:
+  - name: kube-prometheus-stack
+    namespace: monitoring
+    path: main/monitoring/kube-prometheus-stack
+    manifest-paths: /main/monitoring/kube-prometheus-stack
+    sync-wave: "-1"
+    helm:
+      enabled: true

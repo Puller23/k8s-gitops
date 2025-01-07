@@ -1,0 +1,124 @@
+kube-prometheus-stack:
+
+  cleanPrometheusOperatorObjectNames: true
+
+  defaultRules:
+    disabled:
+      HostHighCpuLoad: true
+      NodeSystemSaturation: true
+  alertmanager:
+    config:
+      global:
+        resolve_timeout: 5m
+    alertmanagerSpec:
+      replicas: 1
+      podAntiAffinity: hard
+
+      storage:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: longhorn
+            resources:
+              requests:
+                storage: 10Gi
+  grafana:
+    enabled: false
+    forceDeployDashboards: true
+    sidecar:
+      dashboards:
+        annotations:
+          grafana_folder: Kubernetes
+
+  kubelet:
+   enabled: true
+   serviceMonitor:
+     metricRelabelings:
+       - action: replace
+         sourceLabels: ["node"]
+         targetLabel: instance
+  kube-state-metrics:
+    metricLabelsAllowlist: ["persistentvolumeclaims=[*]"]
+    prometheus:
+      monitor:
+        enabled: true
+        relabelings:
+          - action: replace
+            regex: (.*)
+            replacement: $1
+            sourceLabels: ["__meta_kubernetes_pod_node_name"]
+            targetLabel: kubernetes_node
+
+  kubeApiServer:
+    enabled: true
+
+  kubeControllerManager:
+    enabled: false
+    service:
+      enabled: true
+      port: 10257
+      targetPort: 10257
+    serviceMonitor:
+      enabled: true
+      https: true
+      insecureSkipVerify: true
+
+  kubeScheduler:
+    enabled: false
+    service:
+      enabled: true
+      port: 10259
+      targetPort: 10259
+    serviceMonitor:
+      enabled: true
+      https: true
+      insecureSkipVerify: true
+
+  kubeProxy:
+    enabled: false
+
+  kubeEtcd:
+    enabled: false
+    service:
+      enabled: true
+      port: 2381
+      targetPort: 2381
+
+
+  prometheusOperator:
+    createCustomResource: true
+    prometheusConfigReloader:
+      resources:
+        limits:
+          cpu: 200m
+    admissionWebhooks:
+      enabled: false
+  prometheus:
+    prometheusSpec:
+      replicas: 1
+      replicaExternalLabelName: "replica"
+      ruleSelector: { }
+      ruleNamespaceSelector: { }
+      ruleSelectorNilUsesHelmValues: false
+      serviceMonitorSelector: { }
+      serviceMonitorNamespaceSelector: { }
+      serviceMonitorSelectorNilUsesHelmValues: false
+      podMonitorSelector: { }
+      podMonitorNamespaceSelector: { }
+      podMonitorSelectorNilUsesHelmValues: false
+      retention: 6h
+      enableAdminAPI: true
+      walCompression: true
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: longhorn
+            resources:
+              requests:
+                storage: 20Gi
+  nodeExporter:
+    enabled: true
+
+  prometheus-node-exporter:
+    prometheus:
+      monitor:
+        enabled: true
