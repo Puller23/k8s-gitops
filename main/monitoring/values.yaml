@@ -3,13 +3,13 @@ repo:
   revision: main
 
 applications:
-  - name: kube-prometheus-stack
-    namespace: monitoring
-    path: main/monitoring/kube-prometheus-stack
-    manifest-paths: /main/monitoring/kube-prometheus-stack
-    sync-wave: "-1"
-    helm:
-      enabled: true
-    syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
+  # - name: kube-prometheus-stack
+  #   namespace: monitoring
+  #   path: main/monitoring/kube-prometheus-stack
+  #   manifest-paths: /main/monitoring/kube-prometheus-stack
+  #   sync-wave: "-1"
+  #   helm:
+  #     enabled: true
+  #   syncOptions:
+  #     - CreateNamespace=true
+  #     - ServerSideApply=true
