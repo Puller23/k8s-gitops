@@ -1,0 +1,7 @@
+name: uptime-kuma
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: uptime-kuma
+    version: 2.21.2
+    repository: ttps://dirsigler.github.io/uptime-kuma-helm

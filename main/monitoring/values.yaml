@@ -3,22 +3,26 @@ repo:
   revision: main
 
 applications:
-  - name: kube-prometheus-stack
+  - name: uptime-kuma
     namespace: monitoring
-    path: main/monitoring/kube-prometheus-stack
-    manifest-paths: /main/monitoring/kube-prometheus-stack
+    path: main/monitoring/uptime-kuma
+    manifest-paths: /main/monitoring/uptime-kuma
     sync-wave: "-1"
-    ignoreDifferences:
-      - kind: MutatingWebhookConfiguration
-        jsonPointers:
-          - /webhooks/0/failurePolicy
-      - kind: ValidatingWebhookConfiguration
-        jsonPointers:
-          - /webhooks/0/failurePolicy
-      - kind: ServiceAccount
-        jsonPointers:
-          - /imagePullSecrets
     helm:
       enabled: true
-    syncOptions:
-      - CreateNamespace=true
+  # - name: kube-prometheus-stack
+  #   namespace: monitoring
+  #   path: main/monitoring/kube-prometheus-stack
+  #   manifest-paths: /main/monitoring/kube-prometheus-stack
+  #   sync-wave: "-1"
+  #   ignoreDifferences:
+  #     - kind: MutatingWebhookConfiguration
+  #       jsonPointers:
+  #         - /webhooks/0/failurePolicy
+  #     - kind: ValidatingWebhookConfiguration
+  #       jsonPointers:
+  #         - /webhooks/0/failurePolicy
+  #   helm:
+  #     enabled: true
+  #   syncOptions:
+  #     - CreateNamespace=true
