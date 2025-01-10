@@ -5,6 +5,7 @@ uptime-kuma:
     tag: "1.23.16-debian"
   ingress:
     enabled: true
+    className: "nginx"
     hosts:
       - host: uptime-kuma.local.ibartels.de
         paths:
