@@ -1,5 +1,5 @@
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
   name: letsencrypt-ionos-staging
 spec:
@@ -23,7 +23,7 @@ spec:
                 name: cert-webhook-ionos-secrets
 ---
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
   name: letsencrypt-ionos-prod
 spec:
