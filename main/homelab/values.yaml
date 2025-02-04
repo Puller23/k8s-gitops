@@ -1,0 +1,12 @@
+repo:
+  url: https://github.com/Puller23/k8s-gitops.git
+  revision: main
+
+applications:
+  - name: gethomepage
+    namespace: homelab
+    path: main/homelab/gethomepage
+    manifest-paths: /main/homelab/gethomepage
+    sync-wave: "-1"
+    helm:
+      enabled: true

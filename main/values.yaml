@@ -3,6 +3,13 @@ repo:
   revision: main
 
 applications:
+  - name: homelab
+    namespace: argocd
+    path: main/homelab
+    manifest-paths: /main/homelab/templates;/main/homelab/Chart.yaml;/main/homelab/values.yaml
+    sync-wave: "-1"
+    helm:
+      enabled: true
   - name: monitoring
     namespace: monitoring
     path: main/monitoring
@@ -10,3 +17,4 @@ applications:
     sync-wave: "-2"
     helm:
       enabled: true
+

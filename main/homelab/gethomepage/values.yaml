@@ -1,0 +1,11 @@
+homepage:
+  image:
+    repository: ghcr.io/gethomepage/homepage
+    tag: v0.10.9
+
+  resources:
+    requests:
+      cpu: 15m
+      memory: 127M
+    limits:
+      memory: 308M
