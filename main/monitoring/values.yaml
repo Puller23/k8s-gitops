@@ -10,6 +10,8 @@ applications:
     sync-wave: "-1"
     helm:
       enabled: true
+    syncOptions:
+      - CreateNamespace=true
   # - name: kube-prometheus-stack
   #   namespace: monitoring
   #   path: main/monitoring/kube-prometheus-stack
