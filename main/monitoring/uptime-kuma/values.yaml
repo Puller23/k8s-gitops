@@ -15,3 +15,11 @@ uptime-kuma:
       - secretName: local.ibartels.de-tls
         hosts:
           - uptime-kuma.local.ibartels.de
+  persistence:
+    data:
+      storageClass: "longhorn"
+      accessMode: ReadWriteOnce
+      skipuninstall: true
+      size: "5Gi"
+      mountPath: /app/data
+      enabled: true
