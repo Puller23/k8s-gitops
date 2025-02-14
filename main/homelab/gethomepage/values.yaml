@@ -2,7 +2,18 @@ homepage:
   image:
     repository: ghcr.io/gethomepage/homepage
     tag: v0.10.9
+  # The service account is necessary to allow discovery of other services
+  serviceAccount:
+    create: true
+    name: gethomepage
 
+  # This enables the service account to access the necessary resources
+  enableRbac: true
+
+  persistence:
+    data:
+      enabled: false
+      
   resources:
     requests:
       cpu: 15m
