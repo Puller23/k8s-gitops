@@ -10,3 +10,5 @@ applications:
     sync-wave: "-1"
     helm:
       enabled: true
+    syncOptions:
+      - CreateNamespace=true
