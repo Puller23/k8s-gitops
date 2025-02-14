@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   addresses:
-  - 10.18.20.35-10.18.20.45
+  - 10.18.20.40-10.18.20.45
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
