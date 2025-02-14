@@ -6,13 +6,15 @@ uptime-kuma:
   ingress:
     enabled: true
     className: "nginx"
+    annotations:
+      cert-manager.io/issuer: letsencrypt-ionos-pro
     hosts:
       - host: uptime-kuma.local.ibartels.de
         paths:
           - path: /
             pathType: ImplementationSpecific
     tls:
-      - secretName: local.ibartels.de-tls
+      - secretName: uptime-kuma-cert-tls
         hosts:
           - uptime-kuma.local.ibartels.de
   persistence:
