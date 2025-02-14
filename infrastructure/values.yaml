@@ -42,11 +42,11 @@ applications:
       enabled: true
     syncOptions:
       - CreateNamespace=true
-  # - name: longhorn
-  #   namespace-sync-wave: "-4"
-  #   namespace: longhorn-system
-  #   path: infrastructure/longhorn
-  #   manifest-paths: /infrastructure/longhorn
-  #   sync-wave: "-3"
-  #   helm:
-  #     enabled: true
+  - name: longhorn
+    namespace-sync-wave: "-4"
+    namespace: longhorn-system
+    path: infrastructure/longhorn
+    manifest-paths: /infrastructure/longhorn
+    sync-wave: "-3"
+    helm:
+      enabled: true
