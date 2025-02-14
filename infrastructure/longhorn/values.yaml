@@ -1,8 +1,8 @@
 longhorn:
   persistence:
-    defaultClassReplicaCount: 1
+    defaultClassReplicaCount: 3
   defaultSettings:
-    defaultReplicaCount: 1
+    defaultReplicaCount: 3
     createDefaultDiskLabeledNodes: true
     backupTarget: nfs://nas.local.ibartels.de/mnt/data/nfs/longhorn
     storageMinimalAvailablePercentage: "10"
