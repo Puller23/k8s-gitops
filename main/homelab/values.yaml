@@ -19,3 +19,10 @@ applications:
     sync-wave: "-1"
     helm:
       enabled: true
+  - name: node-red
+    namespace: homelab
+    path: main/homelab/node-red
+    manifest-paths: /main/homelab/node-red
+    sync-wave: "-1"
+    helm:
+      enabled: true

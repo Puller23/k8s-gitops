@@ -1,0 +1,57 @@
+app-template:
+  image:
+      repository: nodered/node-red
+      tag: 4.0.9-18-minimal
+  service:
+    main:
+      enabled: true
+      ports:
+        http:
+          port: &port 1880
+  env:
+    TZ: "Europe/Berlin"
+    FLOWS: "flows.json"
+    NODE_RED_ENABLE_PROJECTS: "true"
+    NODE_RED_ENABLE_SAFE_MODE: "false"
+    NODE_OPTIONS: null
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Home
+        gethomepage.dev/icon: node-red
+        gethomepage.dev/name: Node-Red
+      hosts:
+        - host: "node-red.local.ibartels.de"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "node-red.local.ibartels.de"
+          secretName: "local-ibartels-de-tls"
+  persistence:
+    data:
+      enabled: true
+      storageClass: "longhorn"
+      accessMode: ReadWriteOnce
+      size: "5Gi"
+      skipuninstall: true
+  tolerations:
+    - key: "arm"
+      operator: "Exists"
+    - key: "arm64"
+      operator: "Exists"
+  resources:
+    requests:
+      memory: 350Mi
+      cpu: 25m
+    limits:
+      memory: 1000Mi
+
+  podSecurityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
