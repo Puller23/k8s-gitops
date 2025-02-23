@@ -50,3 +50,11 @@ applications:
     sync-wave: "-3"
     helm:
       enabled: true
+  - name: reflector
+    namespace-sync-wave: "-4"
+    namespace: kube-system
+    path: infrastructure/reflector
+    manifest-paths: /infrastructure/reflector
+    sync-wave: "-3"
+    helm:
+      enabled: true
