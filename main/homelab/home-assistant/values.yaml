@@ -17,6 +17,9 @@ app-template:
     main:
       type: LoadBalancer
       loadBalancerIP: 10.18.20.41
+      ports:
+        http:
+          port: 8123
   # ingress:
   #   main:
   #     enabled: true
