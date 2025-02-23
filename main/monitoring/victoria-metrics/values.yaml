@@ -159,7 +159,7 @@ victoria-metrics-k8s-stack:
       tls:
         - hosts:
             - vmagent.local.ibartels.de
-          secretName: vmagent-cert-tls
+          secretName: local-ibartels-de-tls
       resources:
         limits:
           cpu: null
