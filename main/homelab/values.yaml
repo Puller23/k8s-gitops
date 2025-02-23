@@ -12,3 +12,10 @@ applications:
       enabled: true
     syncOptions:
       - CreateNamespace=true
+  - name: home-assistant
+    namespace: homelab
+    path: main/homelab/home-assistant
+    manifest-paths: /main/homelab/home-assistant
+    sync-wave: "-1"
+    helm:
+      enabled: true
