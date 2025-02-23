@@ -12,10 +12,8 @@ longhorn:
   ingress:
     enabled: false
     host: longhorn.local.ibartels.de
-    tlsSecret: longhorn-tls-prod
+    tlsSecret: local-ibartels-de-tls
     tls: true
-    annotations:
-      cert-manager.io/issuer: letsencrypt-ionos-prod
   preUpgradeChecker:
     # -- Setting that allows Longhorn to perform pre-upgrade checks. Disable this setting when installing Longhorn using Argo CD or other GitOps solutions.
     jobEnabled: false
