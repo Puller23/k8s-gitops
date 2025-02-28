@@ -6,6 +6,11 @@ uptime-kuma:
   ingress:
     enabled: true
     className: "nginx"
+    annotations:
+        gethomepage.dev/enabled: 'true'
+        gethomepage.dev/group: Monitoring
+        gethomepage.dev/icon: uptimekuma
+        gethomepage.dev/name: Uptime Kuma
     hosts:
       - host: uptime-kuma.local.ibartels.de
         paths:
