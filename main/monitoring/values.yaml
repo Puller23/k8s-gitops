@@ -12,15 +12,15 @@ applications:
       enabled: true
     syncOptions:
       - CreateNamespace=true
-  - name: victoria-metrics
-    namespace: monitoring
-    path: main/monitoring/victoria-metrics
-    manifest-paths: /main/monitoring/victoria-metrics
-    sync-wave: "-1"
-    helm:
-      enabled: true
-    syncOptions:
-      - Replace=true
+  # - name: victoria-metrics
+  #   namespace: monitoring
+  #   path: main/monitoring/victoria-metrics
+  #   manifest-paths: /main/monitoring/victoria-metrics
+  #   sync-wave: "-1"
+  #   helm:
+  #     enabled: true
+  #   syncOptions:
+  #     - Replace=true
   # - name: kube-prometheus-stack
   #   namespace: monitoring
   #   path: main/monitoring/kube-prometheus-stack
