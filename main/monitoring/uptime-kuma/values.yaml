@@ -9,7 +9,7 @@ uptime-kuma:
     annotations:
         gethomepage.dev/enabled: 'true'
         gethomepage.dev/group: Monitoring
-        gethomepage.dev/icon: uptimekuma
+        gethomepage.dev/icon: uptime-kuma
         gethomepage.dev/name: Uptime Kuma
     hosts:
       - host: uptime-kuma.local.ibartels.de
