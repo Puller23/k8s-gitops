@@ -24,18 +24,18 @@ homepage:
   config:
     widgets:
       # show the kubernetes widget, with the cluster summary and individual nodes
-      # - kubernetes:
-      #     cluster:
-      #       show: true
-      #       cpu: true
-      #       memory: true
-      #       showLabel: true
-      #       label: "cluster"
-      #     nodes:
-      #       show: true
-      #       cpu: true
-      #       memory: true
-      #       showLabel: true
+      - kubernetes:
+          cluster:
+            show: true
+            cpu: true
+            memory: true
+            showLabel: true
+            label: "cluster"
+          nodes:
+            show: true
+            cpu: true
+            memory: true
+            showLabel: true
       - search:
           provider: duckduckgo
           target: _blank
