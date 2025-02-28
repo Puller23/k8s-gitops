@@ -20,20 +20,24 @@ app-template:
       ports:
         http:
           port: 8123
-  # ingress:
-  #   main:
-  #     enabled: true
-  #     annotations:
-  #       kubernetes.io/ingress.class: "nginx"
-  #     hosts:
-  #       - host: "hass.local.ibartels.de"
-  #         paths:
-  #           - path: /
-  #             pathType: Prefix
-  #     tls:
-  #       - hosts:
-  #           - "hass.local.ibartels.de"
-  #         secretName: "local.ibartels.de-tls"
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Home
+        gethomepage.dev/icon: home-assistant
+        gethomepage.dev/name: Home Assistant
+      hosts:
+        - host: "hass.local.ibartels.de"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "hass.local.ibartels.de"
+          secretName: "local-ibartels-de-tls"
 
   prometheus:
     serviceMonitor:
@@ -61,19 +65,23 @@ app-template:
         - "/config/.vscode"
         - --auth
         - "none"
-      # ingress:
-      #   enabled: true
-      #   annotations:
-      #     kubernetes.io/ingress.class: "nginx"
-      #   hosts:
-      #     - host: hass-config.local.ibartels.de
-      #       paths:
-      #         - path: /
-      #           pathType: Prefix
-      #   tls:
-      #     - hosts:
-      #         - hass-config.local.ibartels.de
-      #       secretName: "local.ibartels.de-tls"
+      ingress:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Tools
+          gethomepage.dev/icon: code-server
+          gethomepage.dev/name: Home Assistant
+        hosts:
+          - host: hass-config.local.ibartels.de
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - hass-config.local.ibartels.de
+            secretName: "local-ibartels-de-tls"
       volumeMounts:
         - name: config
           mountPath: /config
