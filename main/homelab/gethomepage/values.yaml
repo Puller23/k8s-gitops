@@ -20,7 +20,18 @@ homepage:
       memory: 127M
     limits:
       memory: 308M
-  
+  ingress:
+    main:
+      enabled: true
+      hosts:
+        - host: homepage.home.ibartels.de
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - homepage.home.ibartels.de
+          secretName: home-ibartels-de-tls
   config:
     widgets:
       # show the kubernetes widget, with the cluster summary and individual nodes

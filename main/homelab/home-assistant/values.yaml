@@ -74,14 +74,14 @@ app-template:
           gethomepage.dev/icon: code-server
           gethomepage.dev/name: Home Assistant
         hosts:
-          - host: hass-config.local.ibartels.de
+          - host: hass-config.home.ibartels.de
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - hass-config.local.ibartels.de
-            secretName: "local-ibartels-de-tls"
+              - hass-config.home.ibartels.de
+            secretName: "home-ibartels-de-tls"
       volumeMounts:
         - name: config
           mountPath: /config

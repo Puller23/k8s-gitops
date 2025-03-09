@@ -24,14 +24,14 @@ app-template:
         gethomepage.dev/icon: node-red
         gethomepage.dev/name: Node-Red
       hosts:
-        - host: "node-red.local.ibartels.de"
+        - host: "node-red.home.ibartels.de"
           paths:
             - path: /
               pathType: Prefix
       tls:
         - hosts:
-            - "node-red.local.ibartels.de"
-          secretName: "local-ibartels-de-tls"
+            - "node-red.home.ibartels.de"
+          secretName: "home-ibartels-de-tls"
   persistence:
     data:
       enabled: true
