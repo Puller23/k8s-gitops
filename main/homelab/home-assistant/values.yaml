@@ -86,6 +86,3 @@ app-template:
       volumeMounts:
         - name: config
           mountPath: /config
-
-
-labelSelector=app.kubernetes.io/name=home-assistant-addon-codeserver
