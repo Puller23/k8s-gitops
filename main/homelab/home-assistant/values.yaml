@@ -30,14 +30,14 @@ app-template:
         gethomepage.dev/icon: home-assistant
         gethomepage.dev/name: Home Assistant
       hosts:
-        - host: "hass.local.ibartels.de"
+        - host: "hass.home.ibartels.de"
           paths:
             - path: /
               pathType: Prefix
       tls:
         - hosts:
-            - "hass.local.ibartels.de"
-          secretName: "local-ibartels-de-tls"
+            - "hass.home.ibartels.de"
+          secretName: "home-ibartels-de-tls"
 
   prometheus:
     serviceMonitor:
@@ -73,6 +73,7 @@ app-template:
           gethomepage.dev/group: Tools
           gethomepage.dev/icon: code-server
           gethomepage.dev/name: Home Assistant
+          gethomepage.dev/pod-selector: "app.kubernetes.io/name=home-assistant"
         hosts:
           - host: hass-config.home.ibartels.de
             paths:
@@ -85,3 +86,6 @@ app-template:
       volumeMounts:
         - name: config
           mountPath: /config
+
+
+labelSelector=app.kubernetes.io/name=home-assistant-addon-codeserver
