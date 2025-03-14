@@ -3,7 +3,7 @@ emqx:
   recreatePods: true
   service:
     type: LoadBalancer
-    loadBalancerIP: 10.18.20.41
+    loadBalancerIP: 10.18.20.42
   envFromSecret: "emqx-secrets"
   emqxConfig:
     EMQX_ALLOW_ANONYMOUS: "false"
