@@ -56,11 +56,11 @@ argo-cd:
       annotations:
         kubernetes.io/ingress.class: nginx
       hosts:
-        - argocd.local.ibartels.de
+        - argocd.home.ibartels.de
       tls:
         - hosts:
-            - "argocd.local.ibartels.de"
-          secretName: local.ibartels.de-tls
+            - "argocd.home.ibartels.de"
+          secretName: home-ibartels-de-tls
     extraArgs:
       - --insecure
     config:
