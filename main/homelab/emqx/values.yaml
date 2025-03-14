@@ -1,5 +1,5 @@
 emqx:
-  replicaCount: 1
+  replicaCount: 2
   recreatePods: true
   service:
     type: LoadBalancer
