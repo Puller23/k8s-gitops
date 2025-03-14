@@ -26,3 +26,10 @@ applications:
     sync-wave: "-1"
     helm:
       enabled: true
+  - name: paperless
+    namespace: homelab
+    path: main/homelab/paperless
+    manifest-paths: /main/homelab/paperless
+    sync-wave: "-1"
+    helm:
+      enabled: true

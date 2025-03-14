@@ -1,0 +1,117 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        redis:
+            image: 
+              repository: redis
+              tag: 6.2
+              pullPolicy: IfNotPresent
+        main:
+            image:
+              repository: ghcr.io/paperless-ngx/paperless-ngx
+              tag: 2.10.2
+              pullPolicy: IfNotPresent
+            env:
+              PAPERLESS_OCR_LANGUAGE: deu
+              PAPERLESS_TIME_ZONE: "Europe/Berlin"
+              PAPERLESS_CONSUMER_POLLING: "60"
+              PAPERLESS_REDIS: redis://localhost:6379
+              PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{title}"
+              PAPERLESS_URL: "https://dms.home.ibartels.de"
+              PAPERLESS_ENABLE_HTTP_REMOTE_USER: true
+              PAPERLESS_USE_X_FORWARD_HOST: true
+              PAPERLESS_USE_X_FORWARD_PORT: true
+              PAPERLESS_ADMIN_USER:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secrets
+                    key: PAPERLESS_ADMIN_USER
+              PAPERLESS_ADMIN_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secrets
+                    key: PAPERLESS_ADMIN_PASSWORD
+              PAPERLESS_SECRET_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secrets
+                    key: PAPERLESS_SECRET_KEY
+              PAPERLESS_DBHOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secrets
+                    key: PAPERLESS_DBHOST
+              PAPERLESS_DBPORT:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secrets
+                    key: PAPERLESS_DBPORT
+              PAPERLESS_DBUSER:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secrets
+                    key: PAPERLESS_DBUSER
+              PAPERLESS_DBPASS:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secrets
+                    key: PAPERLESS_DBPASS
+              PAPERLESS_DBNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secrets
+                    key: PAPERLESS_DBNAME
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 8000
+  ingress:
+    main:
+      enabled: true
+      className: "nginx"
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+      hosts:
+        - host: &host "dms.home.ibartels.de"
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+      tls:
+        - hosts:
+            - "dms.home.ibartels.de"
+          secretName: "home-ibartels-de-tls"
+  persistence:
+    data:
+      enabled: true
+      globalMounts:
+          - path: /usr/src/paperless/data
+      type: nfs
+      server: 10.18.20.20
+      path: /mnt/data/nfs/k8s-storage/paperless/data
+    consume:
+      enabled: true
+      globalMounts:
+          - path: /usr/src/paperless/consume
+      type: nfs
+      server: 10.18.20.20
+      path: /mnt/data/nfs/k8s-storage/paperless/consume
+    export:
+      enabled: true
+      globalMounts:
+          - path: /usr/src/paperless/export
+      type: nfs
+      server: 10.18.20.20
+      path: /mnt/data/nfs/k8s-storage/paperless/export
+    media:
+      enabled: true
+      globalMounts:
+          - path: /usr/src/paperless/media
+      type: nfs
+      server: 10.18.20.20
+      path: /mnt/data/nfs/k8s-storage/paperless/media
