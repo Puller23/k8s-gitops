@@ -35,6 +35,13 @@ homepage:
             - homepage.home.ibartels.de
           secretName: home-ibartels-de-tls
   config:
+    services:
+      - Apps:
+        - Wallbox:
+            href: https://openwb.local.ibartels.de
+        - Paperless NGX:
+            href: https://dms.home.ibartels.de
+            #icon: home-assistant
     widgets:
       # show the kubernetes widget, with the cluster summary and individual nodes
       # - kubernetes:
