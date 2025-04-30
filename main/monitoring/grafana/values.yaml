@@ -3,6 +3,9 @@ grafana:
     pspEnabled: false
   deploymentStrategy:
     type: Recreate
+  persistence:
+    enabled: true
+    existingClaim: grafana-pvc
   env:
     GF_ANALYTICS_CHECK_FOR_UPDATES: false
     GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: false
@@ -22,7 +25,7 @@ grafana:
     GF_SERVER_ROOT_URL: https://grafana.home.ibartels.de
     GF_SECURITY_COOKIE_SAMESITE: grafana
   envFromSecrets:
-    - name: grafana-secret
+    - name: grafana-secrets
 
   ingress:
     enabled: true
