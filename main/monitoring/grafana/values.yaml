@@ -1,0 +1,89 @@
+grafana:
+  rbac:
+    pspEnabled: false
+  deploymentStrategy:
+    type: Recreate
+  env:
+    GF_ANALYTICS_CHECK_FOR_UPDATES: false
+    GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: false
+    GF_ANALYTICS_REPORTING_ENABLED: false
+    GF_AUTH_ANONYMOUS_ENABLED: false
+    GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
+    GF_EXPLORE_ENABLED: true
+    GF_GRAFANA_NET_URL: https://grafana.net
+    GF_LOG_FILTERS: rendering:debug
+    GF_LOG_MODE: console
+    GF_FEATURE_TOGGLES_ENABLE: publicDashboards
+    GF_NEWS_NEWS_FEED_ENABLED: false
+    GF_PANELS_DISABLE_SANITIZE_HTML: true
+    GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
+    GF_SECURITY_ALLOW_EMBEDDING: true
+    # GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
+    GF_SERVER_ROOT_URL: https://grafana.home.ibartels.de
+    GF_SECURITY_COOKIE_SAMESITE: grafana
+  envFromSecrets:
+    - name: grafana-secret
+
+  ingress:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Monitoring
+      gethomepage.dev/icon: grafana
+      gethomepage.dev/name: Grafana
+      kubernetes.io/ingress.class: "nginx"
+    hosts: [ grafana.home.ibartels.de ]
+    tls:
+      - hosts:
+          - grafana.home.ibartels.de
+        secretName: home-ibartels-de-tls
+  plugins:
+    - pr0ps-trackmap-panel
+  serviceMonitor:
+    enabled: true
+  serviceAccount:
+    autoMount: true
+  dashboards:
+    default:
+      external-secrets:
+        url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
+        datasource: Prometheus
+      argo-cd:
+        url: https://raw.githubusercontent.com/argoproj/argo-cd/v2.14.11/examples/dashboard.json
+        datasource: Prometheus
+  sidecar:
+    datasources:
+      enabled: true
+      searchNamespace: ALL
+      # defaultDatasourceEnabled: false
+    dashboards:
+      enabled: true
+      searchNamespace: ALL
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      # list of datasources that should be deleted from the database
+      deleteDatasources:
+        - name: Alertmanager
+          orgId: 1
+        - name: Prometheus
+          orgId: 1
+        - name: Loki
+          orgId: 1
+      datasources:
+        - name: Prometheus
+          type: prometheus
+          access: proxy
+          url: http://vmsingle-stack.monitoring.svc.cluster.local:8429
+          isDefault: true
+          jsonData:
+            timeInterval: "15s"
+            queryTimeout: "60s"
+            httpMethod: POST
+        - name: Alertmanager
+          type: alertmanager
+          access: proxy
+          url: http://vmalertmanager-stack.monitoring.svc.cluster.local:9093
+          jsonData:
+            implementation: prometheus
+            handleGrafanaManagedAlerts: true
