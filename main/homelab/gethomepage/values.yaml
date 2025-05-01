@@ -41,7 +41,12 @@ homepage:
             href: https://openwb.local.ibartels.de
         - Paperless NGX:
             href: https://dms.home.ibartels.de
-            #icon: home-assistant
+            icon: paperlessngx
+      - Infrastruktur:
+        - Proxmox - pve-live01:
+            href: https://pve-live01.home.ibartels.de:8006
+        - Proxmox - pve-live02:
+            href: https://pve-live02.home.ibartels.de:8006
     widgets:
       # show the kubernetes widget, with the cluster summary and individual nodes
       # - kubernetes:
