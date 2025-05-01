@@ -31,7 +31,7 @@ influxdb2:
   ingress:
     enabled: true
     className: "nginx"
-    hostname: influx.admin.ibartels.de
+    hostname: influx.home.ibartels.de
     path: /
     tls: true
     secretName: "home-ibartels-de-tls"
