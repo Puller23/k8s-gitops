@@ -1,0 +1,37 @@
+influxdb2:
+  image:
+    repository: "influxdb"
+    tag: "2.7.1-alpine"
+  service:
+    type: LoadBalancer
+    loadBalancerIP: 10.18.20.43
+  persistence:
+    enabled: true
+    useExisting: true
+    name: influxdb2-pvc
+  resources:
+    requests:
+      memory: 1000Mi
+      cpu: 100m
+    limits:
+      memory: 1500Mi
+  livenessProbe:
+    timeoutSeconds: 10
+  readinessProbe:
+    timeoutSeconds: 10
+  startupProbe:
+    enabled: true
+    failureThreshold: 10
+    periodSeconds: 10
+  adminUser:
+    organization: "Homelab"
+    bucket: "Smarthome"
+    user: "grba"
+    existingSecret: "influxdb2-secrets"
+  ingress:
+    enabled: true
+    className: "nginx"
+    hostname: influx.admin.ibartels.de
+    path: /
+    tls: true
+    secretName: "home-ibartels-de-tls"

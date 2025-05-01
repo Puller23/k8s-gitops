@@ -19,6 +19,13 @@ applications:
     sync-wave: "-1"
     helm:
       enabled: true
+  - name: influxdb2
+    namespace: monitoring
+    path: main/monitoring/influxdb2
+    manifest-paths: /main/monitoring/influxdb2
+    sync-wave: "-1"
+    helm:
+      enabled: true
   # - name: victoria-metrics
   #   namespace: monitoring
   #   path: main/monitoring/victoria-metrics
