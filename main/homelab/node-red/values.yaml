@@ -2,9 +2,17 @@ app-template:
   image:
       repository: nodered/node-red
       tag: 4.0.9-18-minimal
+  # service:
+  #   main:
+  #     enabled: true
+  #     ports:
+  #       http:
+  #         port: &port 1880
+
   service:
     main:
-      enabled: true
+      type: LoadBalancer
+      loadBalancerIP: 10.18.20.44
       ports:
         http:
           port: &port 1880
