@@ -88,3 +88,4 @@ homepage:
         opacity: 50 # 0-100
   env:
     TZ: Europe/Berlin
+    HOMEPAGE_ALLOWED_HOSTS: homepage.home.ibartels.de
