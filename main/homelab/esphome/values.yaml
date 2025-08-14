@@ -1,0 +1,71 @@
+app-template:
+  image:
+    repository: ghcr.io/esphome/esphome
+    tag: 2025.7.5
+  persistence:
+    config:
+      enabled: true
+      storageClass: "longhorn"
+      accessMode: ReadWriteOnce
+      skipuninstall: true
+      size: "5Gi"
+  
+  env:
+    ESPHOME_DASHBOARD_USE_PING: "true"
+
+  service:
+    main:
+      ports:
+        http:
+          port: &port 6052
+  ingress:
+  main:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Home
+      gethomepage.dev/icon: esphome
+      gethomepage.dev/name: esphome
+    hosts:
+      - host: "esphome.home.ibartels.de"
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - "esphome.home.ibartels.de"
+        secretName: "home-ibartels-de-tls"
+  addons:
+    codeserver:
+      enabled: true
+      image:
+        repository: codercom/code-server
+        tag: 4.101.2
+      workingDir: "/config"
+      args:
+        - --user-data-dir
+        - "/config/.vscode"
+        - --auth
+        - "none"
+      ingress:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Tools
+          gethomepage.dev/icon: code-server
+          gethomepage.dev/name: EPSHOME
+          gethomepage.dev/pod-selector: "app.kubernetes.io/name=esphome"
+        hosts:
+          - host: esphome-config.home.ibartels.de
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - esphome-config.home.ibartels.de
+            secretName: "home-ibartels-de-tls"
+      volumeMounts:
+        - name: config
+          mountPath: /config

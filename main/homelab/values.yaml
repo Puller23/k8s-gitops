@@ -26,6 +26,13 @@ applications:
     sync-wave: "-1"
     helm:
       enabled: true
+  - name: esphome
+    namespace: homelab
+    path: main/homelab/esphome
+    manifest-paths: /main/homelab/esphome
+    sync-wave: "-1"
+    helm:
+      enabled: true
   - name: paperless
     namespace: homelab
     path: main/homelab/paperless
