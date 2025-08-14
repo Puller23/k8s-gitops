@@ -19,23 +19,23 @@ app-template:
         http:
           port: &port 6052
   ingress:
-  main:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: "nginx"
-      gethomepage.dev/enabled: "true"
-      gethomepage.dev/group: Home
-      gethomepage.dev/icon: esphome
-      gethomepage.dev/name: esphome
-    hosts:
-      - host: "esphome.home.ibartels.de"
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - hosts:
-          - "esphome.home.ibartels.de"
-        secretName: "home-ibartels-de-tls"
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Home
+        gethomepage.dev/icon: esphome
+        gethomepage.dev/name: esphome
+      hosts:
+        - host: "esphome.home.ibartels.de"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "esphome.home.ibartels.de"
+          secretName: "home-ibartels-de-tls"
   addons:
     codeserver:
       enabled: true
