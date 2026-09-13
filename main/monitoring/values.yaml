@@ -3,15 +3,15 @@ repo:
   revision: main
 
 applications:
-  - name: uptime-kuma
-    namespace: monitoring
-    path: main/monitoring/uptime-kuma
-    manifest-paths: /main/monitoring/uptime-kuma
-    sync-wave: "-1"
-    helm:
-      enabled: true
-    syncOptions:
-      - CreateNamespace=true
+  # - name: uptime-kuma
+  #   namespace: monitoring
+  #   path: main/monitoring/uptime-kuma
+  #   manifest-paths: /main/monitoring/uptime-kuma
+  #   sync-wave: "-1"
+  #   helm:
+  #     enabled: true
+  #   syncOptions:
+  #     - CreateNamespace=true
   - name: grafana
     namespace: monitoring
     path: main/monitoring/grafana
