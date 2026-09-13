@@ -4,6 +4,7 @@ app-template:
     tag: 2026.9.2
   env:
     TZ: "Europe/Berlin"
+    UV_HTTP_TIMEOUT: "300"
   envFrom:
     - secretRef:
         name: home-assistant-secrets
